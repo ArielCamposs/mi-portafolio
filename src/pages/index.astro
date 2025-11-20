@@ -26,10 +26,12 @@ import StarsBackground from "../components/StarsBackground.astro";
           <a href="#contacto" class="btn primary">Contactar</a>
           <a href="#proyectos" class="btn ghost">Ver proyectos</a>
         </div>
-        <a href="/curriculum-vitae.docx" download class="link-inline cv-link">
-          Descargar CV
-        </a>
-      </div>
+
+        <div class="hero-cv">
+          <a href="/curriculum-vitae.docx" download class="link-inline">
+            Descargar CV
+          </a>
+        </div>
 
       <div class="hero-side">
         <div class="hero-card">
@@ -307,21 +309,29 @@ import StarsBackground from "../components/StarsBackground.astro";
     }
 
     .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      align-items: center;
-    }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+/* Enlace de CV en su propio bloque, debajo de los botones */
+.hero-cv {
+  margin-top: 0.6rem;
+  position: relative;
+  z-index: 1;
+}
 
     .link-inline {
-      font-size: 0.9rem;
-      color: #bbf7d0;
-      text-decoration: none;
-    }
+  font-size: 0.9rem;
+  color: #bbf7d0;
+  text-decoration: none;
+}
 
     .link-inline:hover {
-      text-decoration: underline;
-    }
+  text-decoration: underline;
+}
 
     .cv-link {
       display: inline-flex;
