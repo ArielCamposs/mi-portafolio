@@ -25,8 +25,10 @@ import StarsBackground from "../components/StarsBackground.astro";
         <div class="hero-actions">
         <a href="#contacto" class="btn primary">Contactar</a>
         <a href="#proyectos" class="btn ghost">Ver proyectos</a>
-        <a href="/cv-ariel.docx" download class="btn ghost">Descargar CV</a>
       </div>
+      <a href="/cv-ariel.docx" download class="link-inline cv-link">
+        Descargar CV
+      </a>
 
       <div class="hero-side">
         <div class="hero-card">
@@ -296,21 +298,27 @@ import StarsBackground from "../components/StarsBackground.astro";
     }
 
     .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      align-items: center;
-    }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+}
 
-    .link-inline {
-      font-size: 0.9rem;
-      color: #bbf7d0;
-      text-decoration: none;
-    }
+.link-inline {
+  font-size: 0.9rem;
+  color: #bbf7d0;
+  text-decoration: none;
+}
 
-    .link-inline:hover {
-      text-decoration: underline;
-    }
+.link-inline:hover {
+  text-decoration: underline;
+}
+
+/* versión alineada debajo del bloque de botones */
+.cv-link {
+  display: inline-flex;
+  margin-top: 0.6rem;
+}
 
     .hero-side {
       display: flex;
