@@ -3,14 +3,14 @@ import Layout from "../layouts/Layout.astro";
 import StarsBackground from "../components/StarsBackground.astro";
 ---
 
-<Layout title="Portafolio | Ariel Campos Vega">
+<Layout title="Mi Portafolio | Ariel Campos Vega">
   <StarsBackground />
 
   <!-- HERO A ANCHO COMPLETO -->
   <header class="hero-full">
     <div class="hero-inner">
       <div class="hero-main">
-        <p class="hero-kicker">Desarrollador Web · Analista Programador Computacional</p>
+        <p class="hero-kicker">Desarrollador Web · Analista programador Computacional</p>
 
         <h1 class="hero-title">Ariel Esteban Campos Vega</h1>
 
@@ -23,12 +23,13 @@ import StarsBackground from "../components/StarsBackground.astro";
         </p>
 
         <div class="hero-actions">
-        <a href="#contacto" class="btn primary">Contactar</a>
-        <a href="#proyectos" class="btn ghost">Ver proyectos</a>
+          <a href="#contacto" class="btn primary">Contactar</a>
+          <a href="#proyectos" class="btn ghost">Ver proyectos</a>
+        </div>
+        <a href="/curriculum-vitae.docx" download class="link-inline cv-link">
+          Descargar CV
+        </a>
       </div>
-      <a href="/cv-ariel.docx" download class="link-inline cv-link">
-        Descargar CV
-      </a>
 
       <div class="hero-side">
         <div class="hero-card">
@@ -179,7 +180,7 @@ import StarsBackground from "../components/StarsBackground.astro";
             para futuras funcionalidades de e‑commerce.
           </p>
           <div class="card-links">
-            <a href="https://github.com/ArielCamposs/Pagina-Web-Catalogo-Productos" target="_blank" rel="noreferrer">
+            <a href="https://github.com/tu-usuario/musaplast" target="_blank" rel="noreferrer">
               Código en GitHub
             </a>
           </div>
@@ -230,6 +231,14 @@ import StarsBackground from "../components/StarsBackground.astro";
           class="text-link"
         >
           GitHub
+        </a>
+        <a
+          href="https://www.linkedin.com/in/tu-perfil"
+          target="_blank"
+          rel="noreferrer"
+          class="text-link"
+        >
+          LinkedIn
         </a>
       </div>
     </section>
@@ -298,27 +307,26 @@ import StarsBackground from "../components/StarsBackground.astro";
     }
 
     .hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  align-items: center;
-}
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+    }
 
-.link-inline {
-  font-size: 0.9rem;
-  color: #bbf7d0;
-  text-decoration: none;
-}
+    .link-inline {
+      font-size: 0.9rem;
+      color: #bbf7d0;
+      text-decoration: none;
+    }
 
-.link-inline:hover {
-  text-decoration: underline;
-}
+    .link-inline:hover {
+      text-decoration: underline;
+    }
 
-/* versión alineada debajo del bloque de botones */
-.cv-link {
-  display: inline-flex;
-  margin-top: 0.6rem;
-}
+    .cv-link {
+      display: inline-flex;
+      margin-top: 0.6rem;
+    }
 
     .hero-side {
       display: flex;
