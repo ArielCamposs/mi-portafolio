@@ -17,15 +17,16 @@ function init() {
   camera.position.set(0, 5, 26);
 
   const renderer = new THREE.WebGLRenderer({
-  canvas: canvasEl,
-  antialias: true,
-  alpha: true,
-});
+    canvas: canvasEl,
+    antialias: true,
+    alpha: true,
+  });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
+  // transparente para dejar ver el fondo CSS
   renderer.setClearColor(0x000000, 0);
 
-  // Plano base oscuro (como "fondo" de escritorio)
+  // Plano base oscuro
   const baseGeom = new THREE.PlaneGeometry(80, 40);
   const baseMat = new THREE.MeshStandardMaterial({
     color: 0x020617,
@@ -37,7 +38,7 @@ function init() {
   base.position.y = -8;
   scene.add(base);
 
-  // Grupo de "paneles de código"
+  // Grupo de paneles de "código"
   const panelsGroup = new THREE.Group();
 
   const panelGeom = new THREE.BoxGeometry(8, 4.2, 0.3);
@@ -45,7 +46,6 @@ function init() {
 
   const panelCount = 10;
   for (let i = 0; i < panelCount; i++) {
-    // Panel exterior (marco)
     const frameMat = new THREE.MeshStandardMaterial({
       color: 0x020617,
       metalness: 0.7,
@@ -53,7 +53,6 @@ function init() {
     });
     const frame = new THREE.Mesh(panelGeom, frameMat);
 
-    // "Código" interior (área luminosa)
     const codeMat = new THREE.MeshStandardMaterial({
       color: 0x022c22,
       emissive: 0x22c55e,
@@ -65,7 +64,6 @@ function init() {
     codePlane.position.z = 0.18;
     frame.add(codePlane);
 
-    // Líneas horizontales simulando líneas de código
     const lineGeom = new THREE.PlaneGeometry(6.4, 0.06);
     for (let j = 0; j < 6; j++) {
       const lineMat = new THREE.MeshStandardMaterial({
@@ -85,7 +83,6 @@ function init() {
       frame.add(line);
     }
 
-    // Posición inicial de cada panel en el espacio
     frame.position.set(
       THREE.MathUtils.randFloatSpread(24),
       THREE.MathUtils.randFloat(0, 10),
@@ -103,7 +100,7 @@ function init() {
 
   scene.add(panelsGroup);
 
-  // Pequeños "bits" flotando (como datos)
+  // Bits flotando
   const bitsGroup = new THREE.Group();
   const bitGeom = new THREE.BoxGeometry(0.2, 0.2, 0.2);
   for (let i = 0; i < 80; i++) {
@@ -122,7 +119,7 @@ function init() {
   }
   scene.add(bitsGroup);
 
-  // Luces suaves con tinte verdoso/azulado
+  // Luces
   const ambient = new THREE.AmbientLight(0xffffff, 0.8);
   scene.add(ambient);
 
@@ -134,21 +131,17 @@ function init() {
   fillLight.position.set(-18, 12, 2);
   scene.add(fillLight);
 
-  // Animación
   function animate() {
     requestAnimationFrame(animate);
 
     const t = Date.now() * 0.00025;
 
-    // Rotación muy suave del grupo de paneles
     panelsGroup.rotation.y = Math.sin(t) * 0.25;
 
-    // Movimiento vertical lento de los paneles (suben y bajan un poco)
     panelsGroup.children.forEach((panel, idx) => {
       panel.position.y += Math.sin(t + idx * 0.3) * 0.01;
     });
 
-    // Pequeño movimiento de bits (como datos flotando)
     bitsGroup.children.forEach((bit) => {
       bit.position.y += 0.015;
       if (bit.position.y > 16) {
