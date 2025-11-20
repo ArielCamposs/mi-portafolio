@@ -1,0 +1,249 @@
+---
+const {
+  title = "Portafolio",
+  description = "Portafolio futurista responsivo con Astro",
+} = Astro.props;
+---
+
+<html lang="es">
+ <head>
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Fuente distinta para que no sea el típico system-ui -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        color-scheme: dark;
+        /* Colores un poco más vivos pero aún suaves */
+        --bg: #020617;
+        --accent: #22c55e;
+        --accent-strong: #16a34a;
+        --accent-soft: rgba(34, 197, 94, 0.18);
+        --text: #e5e7eb;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 60%, #000 100%);
+        color: var(--text);
+        overflow-x: hidden;
+      }
+
+      /* NAVBAR TRANSPARENTE FIJO, ESTILO SIMILAR AL DEL VIDEO */
+
+      /* versión casi totalmente transparente */
+.site-header {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 30;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  backdrop-filter: blur(10px);
+}
+
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.6rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .brand {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: var(--text);
+      }
+
+      .brand-name {
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .brand-role {
+        font-size: 0.8rem;
+        color: #9ca3af;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        font-size: 0.9rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #e5e7eb;
+        opacity: 0.8;
+        transition: opacity 0.15s ease, color 0.15s ease;
+      }
+
+      .nav-links a:hover {
+        opacity: 1;
+        color: var(--accent);
+      }
+
+      /* HAMBURGUESA RESPONSIVA (SIN JS) */
+
+      .nav-toggle {
+        display: none;
+      }
+
+      .nav-toggle-label {
+        display: none;
+        width: 2.1rem;
+        height: 2.1rem;
+        border-radius: 999px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        background: rgba(15, 23, 42, 0.7);
+      }
+
+      .nav-toggle-label span {
+        display: block;
+        width: 1.1rem;
+        height: 2px;
+        border-radius: 999px;
+        background: #e5e7eb;
+        position: relative;
+        transition: transform 0.18s ease, opacity 0.18s ease;
+      }
+
+      .nav-toggle-label span::before,
+      .nav-toggle-label span::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 1.1rem;
+        height: 2px;
+        border-radius: 999px;
+        background: #e5e7eb;
+        transition: transform 0.18s ease, top 0.18s ease, opacity 0.18s ease;
+      }
+
+      .nav-toggle-label span::before {
+        top: -6px;
+      }
+
+      .nav-toggle-label span::after {
+        top: 6px;
+      }
+
+      .nav-toggle:checked + .nav-toggle-label span {
+        transform: rotate(45deg);
+      }
+
+      .nav-toggle:checked + .nav-toggle-label span::before {
+        top: 0;
+        transform: rotate(90deg);
+      }
+
+      .nav-toggle:checked + .nav-toggle-label span::after {
+        top: 0;
+        opacity: 0;
+      }
+
+      @media (max-width: 768px) {
+        .nav-toggle-label {
+          display: inline-flex;
+        }
+
+        .nav-links {
+          position: absolute;
+          top: 100%;
+          inset-inline: 0;
+          padding: 0.9rem 1.5rem 1.1rem;
+          background: rgba(15, 23, 42, 0.96);
+          backdrop-filter: blur(22px);
+          border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+          display: none;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.75rem;
+        }
+
+        .nav-toggle:checked ~ .nav-links {
+          display: flex;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nav-container {
+          padding-inline: 1.25rem;
+        }
+
+        .brand-name {
+          font-size: 0.95rem;
+        }
+
+        .brand-role {
+          font-size: 0.78rem;
+        }
+      }
+
+      @media (min-width: 769px) {
+        .nav-links {
+          position: static;
+          background: transparent;
+          border: none;
+          padding: 0;
+        }
+      }
+
+      main {
+        position: relative;
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="nav-container">
+        <!-- Cambia estos textos por tus datos reales -->
+        <a href="#top" class="brand">
+          <span class="brand-name">Ariel Campos</span>
+          <span class="brand-role">Analista programador computacional</span>
+        </a>
+
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menú">
+          <span></span>
+        </label>
+
+        <nav class="nav-links">
+          <a href="#sobre-mi">Sobre mí</a>
+          <a href="#experiencia">Experiencia</a>
+          <a href="#proyectos">Proyectos</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <slot />
+    </main>
+  </body>
+</html>
