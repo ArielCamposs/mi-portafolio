@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definimos los colores como capas base de Tailwind */
+@layer base {
+  :root {
+    --color-navy: #0f172a;
+    --color-slate: #94a3b8;
+    --color-lightest: #e2e8f0;
+    --color-teal: #5eead4;
+  }
+  
+  body {
+    /* Usamos clases estándar de Tailwind que se parecen si falla el custom,
+       o hardcodeamos el color de fondo aquí */
+    background-color: #0f172a; 
+    color: #94a3b8;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/* O creamos la clase utilitaria manualmente si Tailwind no la pilla */
+@layer utilities {
+  .bg-navy { background-color: #0f172a; }
+  .text-navy { color: #0f172a; }
+  .bg-navy_light { background-color: #1e293b; }
+  .text-teal { color: #5eead4; }
+  .text-lightest { color: #e2e8f0; }
+}

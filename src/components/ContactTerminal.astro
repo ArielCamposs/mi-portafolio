@@ -1,0 +1,136 @@
+<section id="contact" class="terminal-section">
+    <div class="container">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="buttons">
+                    <span class="close"></span>
+                    <span class="minimize"></span>
+                    <span class="maximize"></span>
+                </div>
+                <div class="title">user@portfolio:~ (contacto)</div>
+            </div>
+            
+            <div class="terminal-body">
+                <div class="line">
+                    <span class="prompt">user@dev:~$</span> <span class="cmd">iniciar_protocolo_contacto.exe</span>
+                </div>
+                <div class="line output">
+                    > Cargando interfaz de mensajería... <br>
+                    > Conexión segura establecida. <br>
+                    > Por favor, ingrese sus datos abajo:
+                </div>
+
+                <form class="terminal-form">
+                    <div class="input-group">
+                        <label for="email" class="prompt">CORREO > </label>
+                        <input type="email" id="email" placeholder="tu@email.com" autocomplete="off">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="message" class="prompt">MENSAJE > </label>
+                        <textarea id="message" rows="1" placeholder="Escribe tu misión aquí..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-cmd">[ ENVIAR_DATOS ]</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .terminal-section {
+        padding: 100px 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .terminal-window {
+        width: 100%;
+        max-width: 700px;
+        background: rgba(10, 10, 10, 0.95);
+        border: 1px solid #333;
+        border-radius: 8px;
+        box-shadow: 0 0 40px rgba(0, 243, 255, 0.1);
+        overflow: hidden;
+        font-family: 'Courier New', monospace;
+    }
+
+    .terminal-header {
+        background: #1a1a1a;
+        padding: 10px 15px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #333;
+    }
+
+    .buttons { display: flex; gap: 8px; margin-right: 20px; }
+    .buttons span { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+    .close { background: #ff5f56; }
+    .minimize { background: #ffbd2e; }
+    .maximize { background: #27c93f; }
+
+    .title { color: #888; font-size: 0.9rem; }
+
+    .terminal-body { padding: 20px; color: var(--text-main); }
+
+    .line { margin-bottom: 10px; }
+    .prompt { color: var(--accent); margin-right: 10px; font-weight: bold; }
+    .cmd { color: #fff; }
+    .output { color: #aaa; margin-bottom: 20px; font-size: 0.9rem; }
+
+    /* Formulario estilo CLI */
+    .input-group {
+        display: flex;
+        align-items: baseline;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+    }
+
+    input, textarea {
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-family: 'Courier New', monospace;
+        font-size: 1rem;
+        flex: 1;
+        outline: none;
+        border-bottom: 1px dashed #444;
+    }
+
+    input:focus, textarea:focus {
+        border-bottom: 1px dashed var(--accent);
+    }
+
+    .submit-cmd {
+        background: transparent;
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        padding: 10px 20px;
+        margin-top: 20px;
+        cursor: pointer;
+        font-family: inherit;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .submit-cmd:hover {
+        background: var(--accent);
+        color: #000;
+        box-shadow: 0 0 15px var(--accent);
+    }
+</style>
+
+<script>
+    // Efecto simple de parpadeo para el cursor en los inputs
+    const inputs = document.querySelectorAll('input, textarea');
+    
+    inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            input.parentElement?.querySelector('.prompt')?.classList.add('active');
+        });
+        input.addEventListener('blur', () => {
+            input.parentElement?.querySelector('.prompt')?.classList.remove('active');
+        });
+    });
+</script>

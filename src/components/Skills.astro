@@ -1,0 +1,155 @@
+---
+const skills = [
+    { name: "Desarrollo Frontend", percentage: 90, icon: "⚡" },
+    { name: "Astro / React", percentage: 85, icon: "⚛" },
+    { name: "Diseño UI/UX", percentage: 75, icon: "🎨" },
+    { name: "Backend / Node.js", percentage: 70, icon: "🔙" },
+    { name: "GSAP Animaciones", percentage: 80, icon: "✨" }
+];
+---
+
+<section id="skills" class="skills-section">
+    <div class="container">
+        <h2 class="section-title">Niveles de <span class="gradient-text">Sincronización</span></h2>
+        
+        <div class="skills-grid">
+            {skills.map((skill) => (
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">{skill.icon} {skill.name}</span>
+                        <span class="skill-percentage">0%</span> </div>
+                    
+                    <div class="progress-track">
+                        <div class="progress-fill" data-width={skill.percentage + "%"}>
+                            <div class="progress-glow"></div>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .skills-section {
+        padding: 100px 0;
+        background: rgba(5, 5, 5, 0.8); /* Un poco más oscuro para contraste */
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 60px;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+    }
+
+    .skills-grid {
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .skill-item {
+        position: relative;
+    }
+
+    .skill-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-family: var(--font-heading);
+        color: #fff;
+        font-size: 1.1rem;
+    }
+
+    .skill-percentage {
+        color: var(--accent);
+        font-weight: bold;
+        font-family: 'Courier New', monospace; /* Toque técnico */
+    }
+
+    /* El contenedor de la barra (fondo gris oscuro) */
+    .progress-track {
+        width: 100%;
+        height: 14px;
+        background: #111;
+        border: 1px solid #333;
+        border-radius: 2px;
+        position: relative;
+        overflow: hidden;
+        /* Efecto de esquina cortada futurista */
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    }
+
+    /* La barra que se llena */
+    .progress-fill {
+        width: 0; /* GSAP animará esto */
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), var(--secondary));
+        position: relative;
+    }
+
+    /* El brillo interno para que parezca láser */
+    .progress-glow {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4));
+        opacity: 0.5;
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const skills = document.querySelectorAll('.skill-item');
+
+    skills.forEach((skill) => {
+        const bar = skill.querySelector('.progress-fill');
+        const percentageText = skill.querySelector('.skill-percentage');
+        // Leemos el valor objetivo del atributo data-width (ej: "90%")
+        const targetWidth = bar.getAttribute('data-width');
+        // Convertimos a número para el contador (ej: 90)
+        const targetNumber = parseInt(targetWidth); 
+
+        // Objeto temporal para animar el número
+        let counter = { val: 0 };
+
+        gsap.to(bar, {
+            scrollTrigger: {
+                trigger: skill,
+                start: "top 85%", // Inicia cuando la habilidad es visible
+            },
+            width: targetWidth,
+            duration: 1.5,
+            ease: "power2.out",
+            // Durante la animación de la barra, actualizamos también el texto
+            onUpdate: function() {
+                // Animación manual del contador sincronizada con el progreso de la barra
+                // Usamos gsap.utils.interpolate o simplemente animamos el objeto counter por separado
+            }
+        });
+
+        // Animación separada para el número (contador)
+        gsap.to(counter, {
+            scrollTrigger: {
+                trigger: skill,
+                start: "top 85%",
+            },
+            val: targetNumber,
+            duration: 1.5,
+            ease: "power2.out",
+            onUpdate: function() {
+                percentageText.innerText = Math.ceil(counter.val) + "%";
+            }
+        });
+    });
+</script>

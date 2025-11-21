@@ -1,0 +1,115 @@
+---
+const projects = [
+    { title: "E-Commerce AI", desc: "Plataforma de ventas con motor de recomendación.", tech: ["React", "Python", "AWS"] },
+    { title: "Crypto Dashboard", desc: "Visualización de datos en tiempo real.", tech: ["Vue", "D3.js", "Socket.io"] },
+    { title: "Neural Network Viz", desc: "Herramienta educativa interactiva.", tech: ["Three.js", "TypeScript", "WebGL"] }
+];
+---
+
+<section id="projects" class="projects-section">
+    <div class="container">
+        <h2 class="section-title">Misiones <span class="gradient-text">Completadas</span></h2>
+        
+        <div class="grid">
+            {projects.map((project, index) => (
+                <article class="card project-card">
+                    <div class="card-content">
+                        <h3>{project.title}</h3>
+                        <p>{project.desc}</p>
+                        <div class="tags">
+                            {project.tech.map(t => <span>{t}</span>)}
+                        </div>
+                        <a href="#" class="card-link">Ver código -></a>
+                    </div>
+                </article>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .projects-section {
+        padding: 100px 0;
+        position: relative;
+    }
+
+    .section-title {
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .card {
+        background: rgba(20, 20, 20, 0.6);
+        border: 1px solid rgba(0, 243, 255, 0.1);
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        backdrop-filter: blur(5px);
+    }
+
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 2px; height: 0;
+        background: var(--accent);
+        transition: height 0.4s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        border-color: var(--accent);
+        box-shadow: 0 10px 30px -10px rgba(0, 243, 255, 0.2);
+    }
+
+    .card:hover::before {
+        height: 100%;
+    }
+
+    .card h3 { font-size: 1.5rem; color: #fff; margin-bottom: 1rem; }
+    .card p { color: #ccc; margin-bottom: 1.5rem; font-size: 0.95rem; }
+
+    .tags span {
+        display: inline-block;
+        background: rgba(0, 243, 255, 0.1);
+        color: var(--accent);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        margin-right: 8px;
+        font-family: var(--font-heading);
+    }
+
+    .card-link {
+        display: block;
+        margin-top: 20px;
+        color: var(--secondary);
+        text-decoration: none;
+        font-weight: bold;
+    }
+</style>
+
+<script>
+    // Animación al hacer scroll (ScrollTrigger)
+    gsap.registerPlugin(ScrollTrigger);
+    
+    gsap.utils.toArray('.project-card').forEach((card: any, i) => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.6,
+            delay: i * 0.1
+        });
+    });
+</script>
