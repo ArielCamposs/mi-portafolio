@@ -2,10 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
-import About from '../components/About.astro'; // <-- Nuevo
+import About from '../components/About.astro';
 import Skills from '../components/Skills.astro';
 import Projects from '../components/Projects.astro';
 import ContactTerminal from '../components/ContactTerminal.astro';
+import SocialLinks from '../components/SocialLinks.astro';
 ---
 
 <Layout title="Portfolio | Dev Futurista">
@@ -25,9 +26,9 @@ import ContactTerminal from '../components/ContactTerminal.astro';
     </main>
     
     <footer style="padding: 2rem 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 50px;">
-    <p>&copy; 2025 Ariel Campos.</p>
-    <p style="margin-top: 10px;">
-        <a href="/curriculum-vitae.docx" download style="color: var(--secondary); font-weight: bold;">[ Descargar CV ]</a>
-    </p>
-</footer>
+        <SocialLinks location="footer" /> <p style="margin-top: 10px;">&copy; 2024 Dev Futurista. Protocolo activado.</p>
+        <p style="margin-top: 5px;">
+            <a href="/curriculumvitae.pdf" download style="color: var(--secondary); font-weight: bold;">[ Descargar CV ]</a>
+        </p>
+    </footer>
 </Layout>

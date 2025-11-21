@@ -1,0 +1,69 @@
+---
+interface Props {
+    // Si se usa en el hero, le damos un color primario. Si no, usa el secundario.
+    location: 'hero' | 'footer'; 
+}
+
+const { location } = Astro.props;
+
+// Reemplaza los '#' con tus URLs de perfil
+const socialMedia = [
+    { name: 'GitHub', iconClass: 'fa-github', url: 'https://github.com/ArielCamposs' },
+    { name: 'Gmail', iconClass: 'fa-envelope', url: 'mailto:campos25ariel@gmail.com' },
+];
+---
+
+<div class={`social-links ${location}`}>
+    {socialMedia.map((link) => (
+        <a href={link.url} 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           aria-label={`Visita mi perfil de ${link.name}`}>
+            <i class={`fa-brands ${link.iconClass} ${link.name === 'Email' ? 'fa-solid' : 'fa-brands'}`}></i>
+        </a>
+    ))}
+</div>
+
+<style>
+    .social-links {
+        display: flex;
+        gap: 20px;
+        z-index: 5; /* Asegura que estén sobre el fondo */
+    }
+    
+    .social-links a {
+        color: var(--text-main);
+        font-size: 1.5rem;
+        transition: color 0.3s ease, transform 0.3s ease;
+        text-decoration: none;
+    }
+
+    /* Estilos para el Hero */
+    .social-links.hero {
+        margin-top: 30px;
+        /* Los iconos en el hero usan el color secundario y giran */
+    }
+    .social-links.hero a {
+        color: var(--secondary);
+    }
+    .social-links.hero a:hover {
+        color: var(--accent);
+        transform: rotate(10deg) scale(1.1);
+    }
+
+    /* Estilos para el Footer */
+    .social-links.footer {
+        /* Los iconos en el footer usan el color accent y tienen un brillo sutil */
+        margin: 20px auto 0;
+        justify-content: center;
+        padding-top: 15px;
+    }
+    .social-links.footer a {
+        color: var(--accent);
+    }
+    .social-links.footer a:hover {
+        color: #fff;
+        text-shadow: 0 0 10px var(--accent);
+        transform: translateY(-3px);
+    }
+</style>
