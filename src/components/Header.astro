@@ -1,10 +1,11 @@
 <header class="header">
     <nav class="container nav-content">
-        <a href="#" class="logo">&lt;DEV /&gt;</a>
+        <a href="#" class="logo">&lt;Ariel /&gt;</a>
         <ul class="nav-links">
             <li><a href="#about">Sobre mí</a></li>
             <li><a href="#projects">Proyectos</a></li>
             <li><a href="#contact">Contacto</a></li>
+            <li><a href="/curriculum.pdf" download class="btn-header">CV</a></li>
         </ul>
     </nav>
 </header>
@@ -67,6 +68,24 @@
     }
     
     .nav-links a:hover::after {
-        width: 100%;
+        wdth: 100%;
+    }
+    .btn-header {
+        /* Estilo para que se vea como botón, no como enlace simple */
+        padding: 5px 15px;
+        background: var(--accent);
+        color: #000 !important;
+        border-radius: 4px;
+        font-weight: bold;
+        transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .btn-header:hover {
+        background: #fff;
+        box-shadow: 0 0 10px var(--accent);
+    }
+    
+    .btn-header::after { /* Quitar el subrayado animado en el botón */
+        display: none;
     }
 </style>
