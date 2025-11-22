@@ -1,12 +1,19 @@
 ---
-import SocialLinks from './SocialLinks.astro';
+import SocialLinks from "./SocialLinks.astro";
 ---
+
 <section class="hero">
     <div class="container hero-content">
         <h2 class="glitch-text" id="hero-subtitle">Hola, soy Ariel Campos</h2>
-        <h1 id="hero-title">FULL STACK <br /> <span class="gradient-text">DEVELOPER</span></h1>
-        <p id="hero-desc">Construyendo experiencias digitales del futuro.</p>
-        
+        <h1 id="hero-title">
+            ANALISTA PROGRAMADOR COMPUTACIONAL <br />
+            <span class="gradient-text">Desarrollador web</span>
+        </h1>
+        <p id="hero-desc">
+            <span id="typing-text"></span>
+            <span class="cursor">|</span>
+        </p>
+
         <div class="cta-group" id="hero-cta">
             <a href="#projects" class="btn btn-primary">Ver Trabajo</a>
             <a href="#contact" class="btn btn-outline">Contactar</a>
@@ -23,7 +30,7 @@ import SocialLinks from './SocialLinks.astro';
         justify-content: center;
         position: relative;
         /* Totalmente transparente para ver el canvas */
-        background: transparent; 
+        background: transparent;
     }
 
     .hero-content {
@@ -49,6 +56,29 @@ import SocialLinks from './SocialLinks.astro';
         max-width: 600px;
         margin: 0 auto 2.5rem auto;
         color: #aaa;
+        min-height: 1.5em;
+    }
+
+    #typing-text {
+        color: var(--accent);
+        font-weight: 500;
+    }
+
+    .cursor {
+        color: var(--accent);
+        animation: blink 1s infinite;
+        font-weight: 100;
+    }
+
+    @keyframes blink {
+        0%,
+        50% {
+            opacity: 1;
+        }
+        51%,
+        100% {
+            opacity: 0;
+        }
     }
 
     .cta-group {
@@ -64,14 +94,16 @@ import SocialLinks from './SocialLinks.astro';
         text-transform: uppercase;
         font-weight: bold;
         clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
     }
 
     .btn-primary {
         background: var(--accent);
         color: #000;
     }
-    
+
     .btn-primary:hover {
         background: #fff;
         box-shadow: 0 0 20px var(--accent);
@@ -82,25 +114,86 @@ import SocialLinks from './SocialLinks.astro';
         border: 1px solid var(--secondary);
         color: var(--secondary);
     }
-    
+
     .btn-outline:hover {
         background: rgba(188, 19, 254, 0.1);
         box-shadow: 0 0 20px var(--secondary);
     }
 
     @media (max-width: 768px) {
-        h1 { font-size: 3rem; }
+        h1 {
+            font-size: 3rem;
+        }
     }
 </style>
 
 <script>
+    // Textos que se van a escribir
+    const texts = [
+        "Construyendo experiencias digitales del futuro.",
+        "Desarrollador Full Stack especializado en web.",
+        "Creando soluciones innovadoras con código.",
+        "Transformando ideas en aplicaciones reales.",
+    ];
+
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+
+    const typingElement = document.getElementById("typing-text") as HTMLElement;
+
+    function type() {
+        const currentText = texts[textIndex];
+
+        if (isDeleting) {
+            // Borrar caracteres
+            typingElement.textContent = currentText.substring(0, charIndex - 1);
+            charIndex--;
+            typingSpeed = 50;
+        } else {
+            // Escribir caracteres
+            typingElement.textContent = currentText.substring(0, charIndex + 1);
+            charIndex++;
+            typingSpeed = 100;
+        }
+
+        // Si terminó de escribir
+        if (!isDeleting && charIndex === currentText.length) {
+            typingSpeed = 2000; // Pausa al final
+            isDeleting = true;
+        }
+        // Si terminó de borrar
+        else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            textIndex = (textIndex + 1) % texts.length; // Siguiente texto
+            typingSpeed = 500; // Pausa antes de empezar a escribir
+        }
+
+        setTimeout(type, typingSpeed);
+    }
+
     // Animación de entrada con GSAP
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener("DOMContentLoaded", () => {
         const tl = gsap.timeline();
 
-        tl.from("#hero-subtitle", { y: -20, opacity: 0, duration: 0.8, delay: 0.2 })
-          .from("#hero-title", { scale: 0.9, opacity: 0, duration: 1, ease: "power3.out" }, "-=0.4")
-          .from("#hero-desc", { y: 20, opacity: 0, duration: 0.8 }, "-=0.6")
-          .from("#hero-cta", { y: 20, opacity: 0, duration: 0.8 }, "-=0.6");
+        tl.from("#hero-subtitle", {
+            y: -20,
+            opacity: 0,
+            duration: 0.8,
+            delay: 0.2,
+        })
+            .from(
+                "#hero-title",
+                { scale: 0.9, opacity: 0, duration: 1, ease: "power3.out" },
+                "-=0.4",
+            )
+            .from("#hero-desc", { y: 20, opacity: 0, duration: 0.8 }, "-=0.6")
+            .from("#hero-cta", { y: 20, opacity: 0, duration: 0.8 }, "-=0.6");
+
+        // Iniciar efecto de typing después de las animaciones
+        setTimeout(() => {
+            type();
+        }, 1500);
     });
 </script>

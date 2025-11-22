@@ -1,0 +1,23 @@
+---
+// Google Analytics Component
+// Reemplaza 'G-XXXXXXXXXX' con tu ID de medición de Google Analytics
+
+interface Props {
+    id?: string;
+}
+
+const { id = 'G-EN4X07JLN8' } = Astro.props;
+---
+
+<!-- Google Analytics -->
+{id && id !== 'G-EN4X07JLN8' && (
+    <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${id}`}></script>
+        <script is:inline define:vars={{ id }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', id);
+        </script>
+    </>
+)}

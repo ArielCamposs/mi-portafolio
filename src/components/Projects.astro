@@ -1,67 +1,69 @@
 ---
 const projects = [
-    { 
-        title: "Tienda de catalogo y pedidos por WhatsApp", 
-        desc: "Plataforma de ventas con motor de recomendación inteligente y análisis predictivo.", 
-        tech: ["React", "Python", "AWS", "Machine Learning"],
-        codeUrl: "https://github.com/ArielCamposs/Pagina-Web-Catalogo-Productos", // <-- Nueva URL de código
-        demoUrl: "https://pagina-web-catalogo.vercel.app/", // <-- Nueva URL de demo
-        images: [ // <-- Nuevas imágenes para el carrusel
-                "/images/musaplast1.webp",
-                "/images/musaplast2.webp",
-                "/images/musaplast3.webp"
-        ]
-    },
-    { 
-        title: "Crypto Dashboard", 
-        desc: "Visualización de datos de criptomonedas en tiempo real con gráficos interactivos y alertas personalizadas.", 
-        tech: ["Vue", "D3.js", "Socket.io", "Node.js"],
-        codeUrl: "https://github.com/tu-usuario/crypto-dashboard",
-        demoUrl: "https://crypto.tu-dominio.com",
+    {
+        title: "Tienda de Catálogo y Pedidos por WhatsApp",
+        desc: "Sistema de catálogo web para pequeños negocios con integración directa a WhatsApp. Permite a los clientes explorar productos y realizar pedidos de forma rápida y sencilla.",
+        tech: ["React", "Tailwind CSS", "Vercel"],
+        codeUrl:
+            "https://github.com/ArielCamposs/Pagina-Web-Catalogo-Productos",
+        demoUrl: "https://pagina-web-catalogo.vercel.app/",
         images: [
-            "/project-images/crypto-1.webp",
-            "/project-images/crypto-2.webp",
-            "/project-images/crypto-3.webp"
-        ]
+            "/images/musaplast1.webp",
+            "/images/musaplast2.webp",
+            "/images/musaplast3.webp",
+        ],
     },
-    { 
-        title: "Neural Network Viz", 
-        desc: "Herramienta educativa interactiva para visualizar y experimentar con redes neuronales convolucionales.", 
-        tech: ["Three.js", "TypeScript", "WebGL", "TensorFlow.js"],
-        codeUrl: "https://github.com/tu-usuario/nn-viz",
-        demoUrl: "https://nn-viz.tu-dominio.com",
-        images: [
-            "/project-images/neural-1.webp",
-            "/project-images/neural-2.webp",
-            "/project-images/neural-3.webp"
-        ]
-    }
 ];
 ---
 
 <section id="projects" class="projects-section">
     <div class="container">
-        <h2 class="section-title">Misiones <span class="gradient-text">Completadas</span></h2>
-        
+        <h2 class="section-title">
+            Misiones <span class="gradient-text">Completadas</span>
+        </h2>
+
         <div class="grid">
-            {projects.map((project, index) => (
-                <article class="card project-card" data-project-index={index}> {/* Añadimos data-project-index */}
-                    <div class="card-content">
-                        <h3>{project.title}</h3>
-                        <p>{project.desc}</p>
-                        <div class="tags">
-                            {project.tech.map(t => <span>{t}</span>)}
+            {
+                projects.map((project, index) => (
+                    <article
+                        class="card project-card"
+                        data-project-index={index}
+                    >
+                        <div class="card-content">
+                            <h3>{project.title}</h3>
+                            <p>{project.desc}</p>
+                            <div class="tags">
+                                {project.tech.map((t) => (
+                                    <span>{t}</span>
+                                ))}
+                            </div>
+                            <div class="card-actions">
+                                <a
+                                    href={project.codeUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="card-link"
+                                >
+                                    Ver código
+                                </a>
+                                {project.demoUrl && (
+                                    <a
+                                        href={project.demoUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="card-link primary-link"
+                                    >
+                                        Ir a página
+                                    </a>
+                                )}
+                            </div>
+                            <button class="view-details-btn">
+                                Ver Detalles
+                            </button>
                         </div>
-                        <div class="card-actions"> {/* Contenedor para los botones */}
-                            <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" class="card-link">Ver código</a>
-                            {project.demoUrl && (
-                                <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" class="card-link primary-link">Ir a página</a>
-                            )}
-                        </div>
-                        <button class="view-details-btn">Ver Detalles</button> {/* Botón para abrir modal */}
-                    </div>
-                </article>
-            ))}
+                    </article>
+                ))
+            }
         </div>
     </div>
 </section>
@@ -74,37 +76,142 @@ const projects = [
         <div class="modal-tech-tags"></div>
 
         <div class="carousel-container">
+            <div class="carousel-loading" id="carousel-loading">
+                <div class="spinner"></div>
+                <p>Cargando imágenes...</p>
+            </div>
             <div class="carousel-track" id="modal-carousel-track">
                 {/* Las imágenes se cargarán aquí dinámicamente */}
             </div>
-            <button class="carousel-button prev" id="carousel-prev">&#10094;</button>
-            <button class="carousel-button next" id="carousel-next">&#10095;</button>
+            <button class="carousel-button prev" id="carousel-prev"
+                >&#10094;</button
+            >
+            <button class="carousel-button next" id="carousel-next"
+                >&#10095;</button
+            >
         </div>
-        
+
         <div class="modal-actions">
-            <a id="modal-code-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Ver Código</a>
-            <a id="modal-demo-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Ir a Página</a>
+            <a
+                id="modal-code-link"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-outline">Ver Código</a
+            >
+            <a
+                id="modal-demo-link"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary">Ir a Página</a
+            >
         </div>
     </div>
 </div>
 
 <style>
-    /* ... (Mantener CSS existente para .projects-section, .section-title, .grid, .card, etc.) ... */
+    .projects-section {
+        padding: 100px 0;
+        background: rgba(5, 5, 5, 0.9);
+    }
 
-    /* Estilos adicionales para los botones de acción dentro de la tarjeta */
+    .section-title {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 60px;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .card {
+        background: rgba(20, 20, 20, 0.8);
+        border: 1px solid #333;
+        padding: 30px;
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease,
+            border-color 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            var(--accent),
+            transparent
+        );
+        transition: left 0.5s ease;
+    }
+
+    .card:hover::before {
+        left: 100%;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent);
+        box-shadow: 0 10px 40px rgba(0, 243, 255, 0.2);
+    }
+
+    .card-content h3 {
+        color: var(--accent);
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        font-family: var(--font-heading);
+    }
+
+    .card-content p {
+        color: #bbb;
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .tags span {
+        background: rgba(188, 19, 254, 0.1);
+        color: var(--secondary);
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-family: var(--font-heading);
+    }
+
     .card-actions {
         display: flex;
         gap: 15px;
         margin-top: 20px;
-        flex-wrap: wrap; /* Para pantallas pequeñas */
+        flex-wrap: wrap;
     }
 
     .card-link {
-        display: inline-block; /* Para que gap funcione */
+        display: inline-block;
         color: var(--secondary);
         text-decoration: none;
         font-weight: bold;
-        padding: 5px 0; /* Ajuste para que no sea un botón completo */
+        padding: 5px 0;
         border-bottom: 1px solid transparent;
         transition: border-color 0.3s;
     }
@@ -112,11 +219,11 @@ const projects = [
     .card-link:hover {
         border-color: var(--secondary);
     }
-    
+
     .card-link.primary-link {
         color: var(--accent);
     }
-    
+
     .card-link.primary-link:hover {
         border-color: var(--accent);
     }
@@ -131,7 +238,7 @@ const projects = [
         font-family: var(--font-heading);
         font-size: 0.85rem;
         transition: 0.3s;
-        display: block; /* Para que ocupe todo el ancho */
+        display: block;
         width: 100%;
     }
 
@@ -142,7 +249,7 @@ const projects = [
 
     /* --- Estilos del Modal --- */
     .modal {
-        display: none; /* Oculto por defecto */
+        display: none;
         position: fixed;
         z-index: 1000;
         left: 0;
@@ -150,14 +257,14 @@ const projects = [
         width: 100%;
         height: 100%;
         overflow: auto;
-        background-color: rgba(0,0,0,0.8); /* Fondo oscuro semitransparente */
-        backdrop-filter: blur(8px); /* Efecto blur */
+        background-color: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(8px);
         animation: fadeIn 0.3s forwards;
     }
 
     .modal-content {
         background-color: rgba(15, 15, 15, 0.95);
-        margin: 5% auto; /* 5% desde arriba y centrado */
+        margin: 5% auto;
         padding: 30px;
         border: 1px solid var(--accent);
         width: 90%;
@@ -215,7 +322,7 @@ const projects = [
         margin-top: 30px;
         border: 1px solid #333;
         background: #000;
-        height: 450px; /* Altura fija para el carrusel */
+        height: 450px;
     }
 
     .carousel-track {
@@ -227,16 +334,16 @@ const projects = [
     .carousel-track img {
         width: 100%;
         height: 100%;
-        object-fit: contain; /* Ajusta la imagen dentro del contenedor */
+        object-fit: contain;
         flex-shrink: 0;
-        background-color: #000; /* Fondo negro para las imágenes */
+        background-color: #000;
     }
 
     .carousel-button {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        background-color: rgba(0,0,0,0.5);
+        background-color: rgba(0, 0, 0, 0.5);
         color: white;
         border: none;
         padding: 10px 15px;
@@ -247,11 +354,61 @@ const projects = [
     }
 
     .carousel-button:hover {
-        background-color: rgba(0,0,0,0.8);
+        background-color: rgba(0, 0, 0, 0.8);
     }
 
-    .carousel-button.prev { left: 0; border-radius: 0 5px 5px 0; }
-    .carousel-button.next { right: 0; border-radius: 5px 0 0 5px; }
+    .carousel-button.prev {
+        left: 0;
+        border-radius: 0 5px 5px 0;
+    }
+    .carousel-button.next {
+        right: 0;
+        border-radius: 5px 0 0 5px;
+    }
+
+    /* Loading spinner */
+    .carousel-loading {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 10;
+    }
+
+    .carousel-loading.hidden {
+        display: none;
+    }
+
+    .spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid rgba(0, 243, 255, 0.1);
+        border-top: 4px solid var(--accent);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .carousel-loading p {
+        color: var(--accent);
+        margin-top: 20px;
+        font-family: var(--font-heading);
+        font-size: 0.9rem;
+    }
 
     .modal-actions {
         display: flex;
@@ -261,29 +418,78 @@ const projects = [
         flex-wrap: wrap;
     }
 
-    /* Reutilizamos los estilos de los botones del Hero para el modal */
     .modal-actions .btn {
         padding: 10px 25px;
     }
 
+    .btn {
+        padding: 12px 30px;
+        font-family: var(--font-heading);
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: bold;
+        clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+    }
+
+    .btn-primary {
+        background: var(--accent);
+        color: #000;
+    }
+
+    .btn-primary:hover {
+        background: #fff;
+        box-shadow: 0 0 20px var(--accent);
+    }
+
+    .btn-outline {
+        background: transparent;
+        border: 1px solid var(--secondary);
+        color: var(--secondary);
+    }
+
+    .btn-outline:hover {
+        background: rgba(188, 19, 254, 0.1);
+        box-shadow: 0 0 20px var(--secondary);
+    }
+
     /* Animaciones del modal */
     @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
 
     @keyframes slideIn {
-        from { transform: translateY(-50px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
+        from {
+            transform: translateY(-50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
     }
 
     @media (max-width: 768px) {
+        .grid {
+            grid-template-columns: 1fr;
+        }
         .modal-content {
             margin: 10% auto;
             padding: 20px;
         }
-        #modal-title { font-size: 1.8rem; }
-        .carousel-container { height: 300px; }
+        #modal-title {
+            font-size: 1.8rem;
+        }
+        .carousel-container {
+            height: 300px;
+        }
     }
 </style>
 
@@ -294,7 +500,7 @@ const projects = [
     gsap.registerPlugin(ScrollTrigger);
 
     // Animación al hacer scroll (ScrollTrigger)
-    gsap.utils.toArray('.project-card').forEach((card: any, i) => {
+    gsap.utils.toArray(".project-card").forEach((card: any, i) => {
         gsap.from(card, {
             scrollTrigger: {
                 trigger: card,
@@ -303,148 +509,172 @@ const projects = [
             y: 50,
             opacity: 0,
             duration: 0.6,
-            delay: i * 0.1
+            delay: i * 0.1,
         });
     });
 
     // --- Lógica del Modal y Carrusel ---
     const projectsData = [
-        // Asegúrate de que esta data coincide con la de arriba en el bloque Astro
-        { 
-            title: "Tienda Catalogo pedidos por WhatsApp", 
-            desc: "Plataforma de ventas con motor de recomendación inteligente y análisis predictivo.", 
-            tech: ["React", "Python", "AWS", "Machine Learning"],
-            codeUrl: "https://github.com/ArielCamposs/Pagina-Web-Catalogo-Productos",
+        {
+            title: "Tienda de Catálogo y Pedidos por WhatsApp",
+            desc: "Sistema de catálogo web para pequeños negocios con integración directa a WhatsApp. Permite a los clientes explorar productos y realizar pedidos de forma rápida y sencilla.",
+            tech: ["React", "Tailwind CSS", "Vercel"],
+            codeUrl:
+                "https://github.com/ArielCamposs/Pagina-Web-Catalogo-Productos",
             demoUrl: "https://pagina-web-catalogo.vercel.app/",
             images: [
                 "/images/musaplast1.webp",
                 "/images/musaplast2.webp",
-                "/images/musaplast3.webp"
-            ]
+                "/images/musaplast3.webp",
+            ],
         },
-        { 
-            title: "Crypto Dashboard", 
-            desc: "Visualización de datos de criptomonedas en tiempo real con gráficos interactivos y alertas personalizadas.", 
-            tech: ["Vue", "D3.js", "Socket.io", "Node.js"],
-            codeUrl: "https://github.com/tu-usuario/crypto-dashboard",
-            demoUrl: "https://crypto.tu-dominio.com",
-            images: [
-                "/project-images/crypto-1.webp",
-                "/project-images/crypto-2.webp",
-                "/project-images/crypto-3.webp"
-            ]
-        },
-        { 
-            title: "Neural Network Viz", 
-            desc: "Herramienta educativa interactiva para visualizar y experimentar con redes neuronales convolucionales.", 
-            tech: ["Three.js", "TypeScript", "WebGL", "TensorFlow.js"],
-            codeUrl: "https://github.com/tu-usuario/nn-viz",
-            demoUrl: "https://nn-viz.tu-dominio.com",
-            images: [
-                "/project-images/neural-1.webp",
-                "/project-images/neural-2.webp",
-                "/project-images/neural-3.webp"
-            ]
-        }
     ];
 
-    const modal = document.getElementById('project-modal');
-    const closeButton = document.querySelector('.close-button');
-    const projectCards = document.querySelectorAll('.project-card');
+    const modal = document.getElementById("project-modal");
+    const closeButton = document.querySelector(".close-button");
+    const projectCards = document.querySelectorAll(".project-card");
 
-    const modalTitle = document.getElementById('modal-title');
-    const modalDescription = document.getElementById('modal-description');
-    const modalTechTags = document.querySelector('.modal-tech-tags');
-    const modalCodeLink = document.getElementById('modal-code-link');
-    const modalDemoLink = document.getElementById('modal-demo-link');
-    const modalCarouselTrack = document.getElementById('modal-carousel-track');
-    const carouselPrevBtn = document.getElementById('carousel-prev');
-    const carouselNextBtn = document.getElementById('carousel-next');
+    const modalTitle = document.getElementById("modal-title");
+    const modalDescription = document.getElementById("modal-description");
+    const modalTechTags = document.querySelector(".modal-tech-tags");
+    const modalCodeLink = document.getElementById(
+        "modal-code-link",
+    ) as HTMLAnchorElement;
+    const modalDemoLink = document.getElementById(
+        "modal-demo-link",
+    ) as HTMLAnchorElement;
+    const modalCarouselTrack = document.getElementById("modal-carousel-track");
+    const carouselPrevBtn = document.getElementById("carousel-prev");
+    const carouselNextBtn = document.getElementById("carousel-next");
 
-    let currentProjectImages = [];
+    let currentProjectImages: string[] = [];
     let currentImageIndex = 0;
 
-    function openModal(projectIndex) {
+    function openModal(projectIndex: number) {
         const project = projectsData[projectIndex];
-        
-        modalTitle.textContent = project.title;
-        modalDescription.textContent = project.desc;
-        
-        modalTechTags.innerHTML = '';
-        project.tech.forEach(tech => {
-            const span = document.createElement('span');
-            span.textContent = tech;
-            modalTechTags.appendChild(span);
-        });
 
-        modalCodeLink.href = project.codeUrl;
-        if (project.demoUrl) {
+        if (modalTitle) modalTitle.textContent = project.title;
+        if (modalDescription) modalDescription.textContent = project.desc;
+
+        if (modalTechTags) {
+            modalTechTags.innerHTML = "";
+            project.tech.forEach((tech) => {
+                const span = document.createElement("span");
+                span.textContent = tech;
+                modalTechTags.appendChild(span);
+            });
+        }
+
+        if (modalCodeLink) modalCodeLink.href = project.codeUrl;
+        if (project.demoUrl && modalDemoLink) {
             modalDemoLink.href = project.demoUrl;
-            modalDemoLink.style.display = 'inline-block';
-        } else {
-            modalDemoLink.style.display = 'none'; // Ocultar si no hay demo
+            modalDemoLink.style.display = "inline-block";
+        } else if (modalDemoLink) {
+            modalDemoLink.style.display = "none";
         }
 
         // Cargar imágenes del carrusel
         currentProjectImages = project.images;
         currentImageIndex = 0;
         renderCarouselImages();
-        
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // Evita scroll de fondo
+
+        if (modal) modal.style.display = "block";
+        document.body.style.overflow = "hidden";
     }
 
     function renderCarouselImages() {
-        modalCarouselTrack.innerHTML = '';
-        currentProjectImages.forEach(imageUrl => {
-            const img = document.createElement('img');
-            img.src = imageUrl;
-            img.alt = "Captura de pantalla del proyecto";
-            modalCarouselTrack.appendChild(img);
-        });
-        updateCarouselPosition();
+        if (modalCarouselTrack) {
+            const loadingElement = document.getElementById("carousel-loading");
+
+            // Mostrar loading
+            if (loadingElement) {
+                loadingElement.classList.remove("hidden");
+            }
+
+            modalCarouselTrack.innerHTML = "";
+            let imagesLoaded = 0;
+            const totalImages = currentProjectImages.length;
+
+            currentProjectImages.forEach((imageUrl) => {
+                const img = document.createElement("img");
+                img.src = imageUrl;
+                img.alt = "Captura de pantalla del proyecto";
+                img.loading = "lazy"; // Lazy loading para mejor performance
+
+                // Ocultar loading cuando todas las imágenes se carguen
+                img.onload = () => {
+                    imagesLoaded++;
+                    if (imagesLoaded === totalImages && loadingElement) {
+                        loadingElement.classList.add("hidden");
+                    }
+                };
+
+                // También ocultar si hay error
+                img.onerror = () => {
+                    imagesLoaded++;
+                    if (imagesLoaded === totalImages && loadingElement) {
+                        loadingElement.classList.add("hidden");
+                    }
+                };
+
+                modalCarouselTrack.appendChild(img);
+            });
+            updateCarouselPosition();
+        }
     }
 
     function updateCarouselPosition() {
-        if (currentProjectImages.length > 0) {
-            const imageWidth = modalCarouselTrack.children[0].clientWidth;
+        if (
+            currentProjectImages.length > 0 &&
+            modalCarouselTrack &&
+            modalCarouselTrack.children[0]
+        ) {
+            const imageWidth = (modalCarouselTrack.children[0] as HTMLElement)
+                .clientWidth;
             modalCarouselTrack.style.transform = `translateX(-${currentImageIndex * imageWidth}px)`;
         }
     }
 
     function nextImage() {
-        currentImageIndex = (currentImageIndex + 1) % currentProjectImages.length;
+        currentImageIndex =
+            (currentImageIndex + 1) % currentProjectImages.length;
         updateCarouselPosition();
     }
 
     function prevImage() {
-        currentImageIndex = (currentImageIndex - 1 + currentProjectImages.length) % currentProjectImages.length;
+        currentImageIndex =
+            (currentImageIndex - 1 + currentProjectImages.length) %
+            currentProjectImages.length;
         updateCarouselPosition();
     }
 
-    projectCards.forEach(card => {
-        card.querySelector('.view-details-btn').addEventListener('click', () => {
-            const index = card.dataset.projectIndex;
-            openModal(parseInt(index));
-        });
-    });
-
-    closeButton.addEventListener('click', () => {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Restaurar scroll
-    });
-
-    window.addEventListener('click', (event) => {
-        if (event.target == modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
+    projectCards.forEach((card) => {
+        const btn = card.querySelector(".view-details-btn");
+        if (btn) {
+            btn.addEventListener("click", () => {
+                const index = (card as HTMLElement).dataset.projectIndex;
+                if (index) openModal(parseInt(index));
+            });
         }
     });
 
-    carouselNextBtn.addEventListener('click', nextImage);
-    carouselPrevBtn.addEventListener('click', prevImage);
+    if (closeButton) {
+        closeButton.addEventListener("click", () => {
+            if (modal) modal.style.display = "none";
+            document.body.style.overflow = "auto";
+        });
+    }
 
-    // Ajustar posición del carrusel en redimensionamiento para evitar roturas
-    window.addEventListener('resize', updateCarouselPosition);
+    window.addEventListener("click", (event) => {
+        if (event.target == modal) {
+            if (modal) modal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+    });
 
+    if (carouselNextBtn) carouselNextBtn.addEventListener("click", nextImage);
+    if (carouselPrevBtn) carouselPrevBtn.addEventListener("click", prevImage);
+
+    // Ajustar posición del carrusel en redimensionamiento
+    window.addEventListener("resize", updateCarouselPosition);
 </script>

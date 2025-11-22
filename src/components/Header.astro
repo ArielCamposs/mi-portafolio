@@ -1,11 +1,14 @@
 <header class="header">
+    <div class="scroll-progress"></div>
     <nav class="container nav-content">
         <a href="#" class="logo">&lt;Ariel /&gt;</a>
         <ul class="nav-links">
             <li><a href="#about">Sobre mí</a></li>
             <li><a href="#projects">Proyectos</a></li>
             <li><a href="#contact">Contacto</a></li>
-            <li><a href="/curriculum.pdf" download class="btn-header">CV</a></li>
+            <li>
+                <a href="/curriculum.pdf" download class="btn-header">CV</a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -20,6 +23,17 @@
         backdrop-filter: blur(10px);
         background: rgba(5, 5, 5, 0.5);
         border-bottom: 1px solid rgba(0, 243, 255, 0.1);
+    }
+
+    .scroll-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent), var(--secondary));
+        width: 0%;
+        transition: width 0.1s ease-out;
+        box-shadow: 0 0 10px var(--accent);
     }
 
     .nav-content {
@@ -54,10 +68,10 @@
     .nav-links a:hover {
         color: var(--accent);
     }
-    
+
     /* Efecto de subrayado animado */
     .nav-links a::after {
-        content: '';
+        content: "";
         position: absolute;
         width: 0;
         height: 2px;
@@ -66,10 +80,11 @@
         background-color: var(--secondary);
         transition: width 0.3s ease;
     }
-    
+
     .nav-links a:hover::after {
-        wdth: 100%;
+        width: 100%;
     }
+
     .btn-header {
         /* Estilo para que se vea como botón, no como enlace simple */
         padding: 5px 15px;
@@ -77,15 +92,45 @@
         color: #000 !important;
         border-radius: 4px;
         font-weight: bold;
-        transition: background 0.3s, box-shadow 0.3s;
+        transition:
+            background 0.3s,
+            box-shadow 0.3s;
     }
 
     .btn-header:hover {
         background: #fff;
         box-shadow: 0 0 10px var(--accent);
     }
-    
-    .btn-header::after { /* Quitar el subrayado animado en el botón */
+
+    .btn-header::after {
+        /* Quitar el subrayado animado en el botón */
         display: none;
     }
 </style>
+
+<script>
+    // Scroll progress indicator
+    const scrollProgress = document.querySelector(
+        ".scroll-progress",
+    ) as HTMLElement;
+
+    function updateScrollProgress() {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollTop = window.scrollY;
+
+        // Calcular el porcentaje de scroll
+        const scrollPercentage =
+            (scrollTop / (documentHeight - windowHeight)) * 100;
+
+        if (scrollProgress) {
+            scrollProgress.style.width = `${scrollPercentage}%`;
+        }
+    }
+
+    // Actualizar en scroll
+    window.addEventListener("scroll", updateScrollProgress);
+
+    // Actualizar al cargar
+    updateScrollProgress();
+</script>

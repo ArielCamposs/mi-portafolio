@@ -1,0 +1,39 @@
+---
+interface Props {
+    src: string;
+    alt: string;
+    width?: number;
+    height?: number;
+    class?: string;
+    loading?: "lazy" | "eager";
+}
+
+const {
+    src,
+    alt,
+    width,
+    height,
+    class: className = "",
+    loading = "lazy",
+} = Astro.props;
+
+// Detectar si es WebP
+const isWebP = src.endsWith(".webp");
+---
+
+<img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    class={className}
+    loading={loading}
+    decoding="async"
+    style="max-width: 100%; height: auto;"
+/>
+
+<style>
+    img {
+        display: block;
+    }
+</style>

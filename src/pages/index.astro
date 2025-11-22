@@ -1,33 +1,49 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import Skills from '../components/Skills.astro';
-import Projects from '../components/Projects.astro';
-import ContactTerminal from '../components/ContactTerminal.astro';
-import SocialLinks from '../components/SocialLinks.astro';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Skills from "../components/Skills.astro";
+import Projects from "../components/Projects.astro";
+import Experience from "../components/Experience.astro";
+import ContactTerminal from "../components/ContactTerminal.astro";
+import SocialLinks from "../components/SocialLinks.astro";
 ---
 
-<Layout title="Portfolio | Dev Futurista">
+<Layout title="Portfolio | Ariel Campos">
     <Header />
     <main>
         <Hero />
-        <Skills /> <Projects />
+        <Skills />
+        <Projects />
         <About />
+        <Experience />
         <ContactTerminal />
-        <section id="contact" style="height: 50vh; display: flex; align-items: center; justify-content: center; text-align: center;">
+        <section
+            id="contact"
+            style="height: 50vh; display: flex; align-items: center; justify-content: center; text-align: center;"
+        >
             <div class="container">
                 <h2>¿Quieres te ayude con tu web?</h2>
                 <p style="margin-top: 1rem;">campos25ariel@gmail.com</p>
             </div>
         </section>
     </main>
-    
-    <footer style="padding: 2rem 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 50px;">
-        <SocialLinks location="footer" /> <p style="margin-top: 10px;">&copy; 2024 Dev Futurista. Protocolo activado.</p>
+
+    <footer
+        style="padding: 2rem 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 50px;"
+    >
+        <SocialLinks location="footer" />
+        <p style="margin-top: 10px;">
+            &copy; 2024 Ariel Campos. Protocolo activado.
+        </p>
         <p style="margin-top: 5px;">
-            <a href="/curriculumvitae.pdf" download style="color: var(--secondary); font-weight: bold;">[ Descargar CV ]</a>
+            <a
+                href="/curriculum.pdf"
+                download
+                style="color: var(--secondary); font-weight: bold;"
+                >[ Descargar CV ]</a
+            >
         </p>
     </footer>
 </Layout>

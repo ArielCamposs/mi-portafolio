@@ -1,56 +1,144 @@
 ---
 interface Props {
-	title: string;
+    title: string;
 }
 
 const { title } = Astro.props;
+
+import Analytics from "../components/Analytics.astro";
 ---
 
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Portafolio Futurista" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJd/rBNDI0O3p0K7vK1/W7X0Jz4W6iGz1FvWv+lA2A7R/oXgE9vGz1I/H0V1NzA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-        <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-        <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-		<title>{title}</title>
-	</head>
-	<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+
+        <!-- SEO Meta Tags -->
+        <meta
+            name="description"
+            content="Portafolio de Ariel Campos - Desarrollador Full Stack especializado en desarrollo web, e-commerce y aplicaciones modernas con React, Astro, PHP y Tailwind CSS."
+        />
+        <meta
+            name="keywords"
+            content="desarrollador web, full stack, React, Astro, PHP, Tailwind CSS, e-commerce, portafolio, desarrollo web Argentina"
+        />
+        <meta name="author" content="Ariel Campos" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://tu-dominio.com/" />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tu-dominio.com/" />
+        <meta
+            property="og:title"
+            content="Ariel Campos - Desarrollador Full Stack"
+        />
+        <meta
+            property="og:description"
+            content="Desarrollador Full Stack especializado en desarrollo web, e-commerce y aplicaciones modernas. Busco oportunidades laborales y proyectos freelance."
+        />
+        <meta
+            property="og:image"
+            content="https://tu-dominio.com/og-image.jpg"
+        />
+        <meta property="og:locale" content="es_AR" />
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://tu-dominio.com/" />
+        <meta
+            name="twitter:title"
+            content="Ariel Campos - Desarrollador Full Stack"
+        />
+        <meta
+            name="twitter:description"
+            content="Desarrollador Full Stack especializado en desarrollo web, e-commerce y aplicaciones modernas."
+        />
+        <meta
+            name="twitter:image"
+            content="https://tu-dominio.com/og-image.jpg"
+        />
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+        <!-- Performance: Preconnect to external domains -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+        <!-- Performance: Preload critical fonts -->
+        <link
+            rel="preload"
+            href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700&family=Orbitron:wght@400;700;900&display=swap"
+            as="style"
+        />
+
+        <!-- Fonts -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJd/rBNDI0O3p0K7vK1/W7X0Jz4W6iGz1FvWv+lA2A7R/oXgE9vGz1I/H0V1NzA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+            media="print"
+            onload="this.media='all'"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700&family=Orbitron:wght@400;700;900&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- GSAP - Defer loading -->
+        <script
+            defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+        ></script>
+        <script
+            defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
+        ></script>
+
+        <!-- Analytics -->
+        <Analytics />
+
+        <title>{title}</title>
+    </head>
+    <body>
         <canvas id="matrix-bg"></canvas>
-        
+
         <div class="noise-overlay"></div>
         <div id="cursor" class="cursor-outer"></div>
         <div id="cursor-dot" class="cursor-inner"></div>
 
-		<slot />
-	</body>
+        <slot />
+    </body>
 </html>
 
 <style is:global>
-	:root {
-		--bg-color: #050505;
-		--accent: #00f3ff; /* Cyan Neon */
-		--secondary: #bc13fe; /* Purple Neon */
-		--text-main: #e0e0e0;
-        --font-heading: 'Orbitron', sans-serif;
-        --font-body: 'Exo 2', sans-serif;
-	}
+    :root {
+        --bg-color: #050505;
+        --accent: #00f3ff; /* Cyan Neon */
+        --secondary: #bc13fe; /* Purple Neon */
+        --text-main: #e0e0e0;
+        --font-heading: "Orbitron", sans-serif;
+        --font-body: "Exo 2", sans-serif;
+    }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
-	html {
-		font-family: var(--font-body);
-		background: var(--bg-color);
-		color: var(--text-main);
+    html {
+        font-family: var(--font-body);
+        background: var(--bg-color);
+        color: var(--text-main);
         scroll-behavior: smooth;
         overflow-x: hidden;
-	}
+    }
 
     /* Fondo Canvas */
     #matrix-bg {
@@ -66,23 +154,34 @@ const { title } = Astro.props;
     /* Efecto de ruido opcional */
     .noise-overlay {
         position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: url('https://grainy-gradients.vercel.app/noise.svg');
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("https://grainy-gradients.vercel.app/noise.svg");
         opacity: 0.05;
         z-index: -1;
         pointer-events: none;
     }
 
-    h1, h2, h3 { font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 2px; }
-    p { line-height: 1.6; }
-    
+    h1,
+    h2,
+    h3 {
+        font-family: var(--font-heading);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    p {
+        line-height: 1.6;
+    }
+
     /* Utilidades */
     .container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 20px;
     }
-    
+
     .gradient-text {
         background: linear-gradient(90deg, var(--accent), var(--secondary));
         -webkit-background-clip: text;
@@ -91,22 +190,29 @@ const { title } = Astro.props;
     /* El círculo grande */
     .cursor-outer {
         position: fixed;
-        top: 0; left: 0;
-        width: 40px; height: 40px;
+        top: 0;
+        left: 0;
+        width: 40px;
+        height: 40px;
         border: 1px solid var(--accent);
         border-radius: 50%;
         pointer-events: none; /* CRUCIAL: Para poder clickear a través de él */
         transform: translate(-50%, -50%);
         z-index: 9999;
-        transition: width 0.3s, height 0.3s, background-color 0.3s;
+        transition:
+            width 0.3s,
+            height 0.3s,
+            background-color 0.3s;
         mix-blend-mode: difference; /* Invierte colores sobre fondos claros */
     }
 
     /* El punto central */
     .cursor-inner {
         position: fixed;
-        top: 0; left: 0;
-        width: 8px; height: 8px;
+        top: 0;
+        left: 0;
+        width: 8px;
+        height: 8px;
         background-color: var(--secondary);
         border-radius: 50%;
         pointer-events: none;
@@ -125,14 +231,14 @@ const { title } = Astro.props;
 
 <script>
     // Script para el efecto de lluvia de código (Matrix style pero minimalista)
-    const canvas = document.getElementById('matrix-bg') as HTMLCanvasElement;
-    const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById("matrix-bg") as HTMLCanvasElement;
+    const ctx = canvas.getContext("2d");
 
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
 
     // Caracteres relacionados a programación
-    const chars = '01{}[]<>/*-+=$%&@#';
+    const chars = "01{}[]<>/*-+=$%&@#";
     const drops = [];
     const fontSize = 14;
     const columns = width / fontSize;
@@ -143,11 +249,11 @@ const { title } = Astro.props;
 
     function draw() {
         // Efecto de estela
-        ctx.fillStyle = 'rgba(5, 5, 5, 0.05)';
+        ctx.fillStyle = "rgba(5, 5, 5, 0.05)";
         ctx.fillRect(0, 0, width, height);
 
-        ctx.fillStyle = '#00f3ff'; // Color del texto (Cyan)
-        ctx.font = fontSize + 'px monospace';
+        ctx.fillStyle = "#00f3ff"; // Color del texto (Cyan)
+        ctx.font = fontSize + "px monospace";
 
         for (let i = 0; i < drops.length; i++) {
             const text = chars.charAt(Math.floor(Math.random() * chars.length));
@@ -160,7 +266,7 @@ const { title } = Astro.props;
         }
     }
 
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
     });
@@ -168,21 +274,25 @@ const { title } = Astro.props;
     setInterval(draw, 33);
 
     // Script para mover el cursor
-    const cursor = document.getElementById('cursor');
-    const cursorDot = document.getElementById('cursor-dot');
+    const cursor = document.getElementById("cursor");
+    const cursorDot = document.getElementById("cursor-dot");
 
-    window.addEventListener('mousemove', (e) => {
+    window.addEventListener("mousemove", (e) => {
         // El punto sigue al mouse instantáneamente
         gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0 });
-        
+
         // El círculo exterior tiene un poco de "lag" (inercia)
         gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.15 });
     });
 
     // Detectar links para agrandar el cursor
-    const links = document.querySelectorAll('a, button, .card');
-    links.forEach(link => {
-        link.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-        link.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+    const links = document.querySelectorAll("a, button, .card");
+    links.forEach((link) => {
+        link.addEventListener("mouseenter", () =>
+            document.body.classList.add("hovering"),
+        );
+        link.addEventListener("mouseleave", () =>
+            document.body.classList.remove("hovering"),
+        );
     });
 </script>
