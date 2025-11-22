@@ -1,0 +1,133 @@
+/* Mobile Responsive Fixes - Global */
+
+/* Projects Section */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    .card {
+        max-width: 100% !important;
+    }
+
+    .modal-content {
+        width: 95% !important;
+        max-width: 95% !important;
+        padding: 20px !important;
+        margin: 20px auto !important;
+    }
+
+    .carousel-container {
+        height: 300px !important;
+    }
+
+    .modal-actions {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    .modal-actions .btn {
+        width: 100% !important;
+    }
+}
+
+/* Skills Section */
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    .skill-item h3 {
+        font-size: 1rem !important;
+    }
+}
+
+/* About Section */
+@media (max-width: 768px) {
+    .profile-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    .about-section h2 {
+        font-size: 2rem !important;
+    }
+}
+
+/* Experience Section */
+@media (max-width: 768px) {
+    .timeline-item {
+        grid-template-columns: 40px 1fr !important;
+        gap: 15px !important;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.2rem !important;
+    }
+
+    .timeline-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+}
+
+/* Contact Section */
+@media (max-width: 768px) {
+    .terminal-window {
+        padding: 15px !important;
+    }
+
+    .terminal-header {
+        font-size: 0.9rem !important;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.9rem !important;
+        padding: 10px !important;
+    }
+
+    .submit-btn {
+        width: 100% !important;
+        padding: 12px !important;
+    }
+}
+
+/* General Mobile Improvements */
+@media (max-width: 768px) {
+    section {
+        padding: 60px 0 !important;
+    }
+
+    .section-title {
+        font-size: 2rem !important;
+    }
+
+    .container {
+        padding: 0 15px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 40px 0 !important;
+    }
+
+    .section-title {
+        font-size: 1.75rem !important;
+    }
+
+    h1 {
+        font-size: 1.75rem !important;
+    }
+
+    h2 {
+        font-size: 1.5rem !important;
+    }
+
+    h3 {
+        font-size: 1.25rem !important;
+    }
+}

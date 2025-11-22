@@ -1,0 +1,170 @@
+/* Mobile Performance Fix - Disable Matrix Animation */
+@media (max-width: 768px) {
+    #matrix-bg {
+        display: none !important;
+    }
+
+    /* Ocultar cursor personalizado en móvil */
+    .cursor-outer,
+    .cursor-inner {
+        display: none !important;
+    }
+}
+
+/* Mobile Responsive Styles - Global */
+
+/* Hero Section */
+@media (max-width: 768px) {
+    .hero h2 {
+        font-size: 1.1rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem !important;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero .cta-group {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .hero .btn {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Header */
+@media (max-width: 768px) {
+    .header {
+        padding: 15px 0 !important;
+    }
+
+    .logo {
+        font-size: 1.2rem !important;
+    }
+
+    .nav-links {
+        gap: 15px !important;
+    }
+
+    .nav-links a {
+        font-size: 0.8rem !important;
+    }
+
+    .btn-header {
+        padding: 4px 12px !important;
+        font-size: 0.75rem !important;
+    }
+}
+
+/* Projects */
+@media (max-width: 768px) {
+    .projects-section .grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    .projects-section .card {
+        padding: 20px !important;
+    }
+
+    .modal-content {
+        width: 95% !important;
+        max-width: 95% !important;
+        padding: 20px !important;
+        margin: 20px auto !important;
+    }
+
+    .carousel-container {
+        height: 250px !important;
+    }
+
+    .modal-actions {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    .modal-actions .btn {
+        width: 100% !important;
+    }
+}
+
+/* Skills */
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+}
+
+/* About */
+@media (max-width: 768px) {
+    .profile-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+}
+
+/* Experience */
+@media (max-width: 768px) {
+    .timeline-item {
+        grid-template-columns: 40px 1fr !important;
+        gap: 15px !important;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.2rem !important;
+    }
+}
+
+/* Contact */
+@media (max-width: 768px) {
+    .terminal-window {
+        padding: 15px !important;
+    }
+
+    .submit-btn {
+        width: 100% !important;
+    }
+}
+
+/* General */
+@media (max-width: 768px) {
+    section {
+        padding: 60px 0 !important;
+    }
+
+    .section-title {
+        font-size: 2rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem !important;
+    }
+
+    .hero h2 {
+        font-size: 1rem !important;
+    }
+
+    .logo {
+        font-size: 1rem !important;
+    }
+
+    .nav-links a {
+        font-size: 0.75rem !important;
+    }
+}
